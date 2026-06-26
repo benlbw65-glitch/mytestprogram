@@ -1,5 +1,6 @@
 import unittest
-from calculator import add, subtract
+import math
+from calculator import add, subtract, log
 
 class TestCalculator(unittest.TestCase):
     def test_add(self):
@@ -12,5 +13,14 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(subtract(2, 5), -3)
         self.assertEqual(subtract(0, 0), 0)
 
+    def test_log(self):
+        self.assertAlmostEqual(log(100, 10), 2.0)
+        self.assertAlmostEqual(log(math.e), 1.0)
+        with self.assertRaises(ValueError):
+            log(0)
+        with self.assertRaises(ValueError):
+            log(-1)
+
 if __name__ == "__main__":
     unittest.main()
+
